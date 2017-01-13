@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../libraries/libImaging/include/imaging.h"
+#include "../libraries/Imaging/include/imaging.h"
 
 #include "fractal.h"
 
 
-static const unsigned int kWidth = 480;
-static const unsigned int kHeight = 360;
+static const unsigned int kWidth = 800;
+static const unsigned int kHeight = 600;
 
 
 int main(int argc, char *argv[])

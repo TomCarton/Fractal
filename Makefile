@@ -15,7 +15,7 @@ all: $(OBJ_FILES) libraries/Imaging/libImaging.a
 	$(CC) $(CC_FLAGS) libraries/Imaging/libImaging.a $^ -o $(TARGET)
 
 libraries/Imaging/libImaging.a:
-	cd libraries/Imaging/ && $(MAKE) libImaging.a
+	cd libraries/Imaging && $(MAKE) libImaging.a
 	cd ../..
 
 $(OBJ_DIR)/%.o: sources/%.c
@@ -35,6 +35,7 @@ $(OBJ_DIR):
 
 .PHONY: clean
 clean:
+	cd libraries/Imaging && $(MAKE) clean
 	rm -rf $(OBJ_DIR)
 	rm $(TARGET)
 
