@@ -5,6 +5,8 @@
 
 #include <math.h>
 
+#include "../libraries/image/image.h"
+
 #include "fractal.h"
 
 
@@ -24,18 +26,18 @@ static unsigned int FractalEscape(double zr, double zi, double cr, double ci, in
 	return age - 1;
 }
 
-void RenderFractal(FractalParameters params, unsigned char *buffer, unsigned int width, unsigned int height)
+void RenderFractal(FractalParameters params, Image *image)
 {
 	double z0r = 0, z0i = 0;
 	double cr = params.cr, ci = params.ci;
 
-	for (unsigned int k = 0; k < width * height; ++k)
+	for (unsigned int k = 0; k < image->width * image->height; ++k)
 	{
-		unsigned int x = k % width;
-		unsigned int y = k / width;
+		unsigned int x = k % image->width;
+		unsigned int y = k / image->width;
 
-		double fx = params.xMin + (x + 0.5) / width * (params.xMax - params.xMin);
-		double fy = params.yMax - (y + 0.5) / height * (params.yMax - params.yMin);
+		double fx = params.xMin + (x + 0.5) / image->width * (params.xMax - params.xMin);
+		double fy = params.yMax - (y + 0.5) / image->height * (params.yMax - params.yMin);
 
 		switch (params.mode)
 		{
@@ -51,8 +53,8 @@ void RenderFractal(FractalParameters params, unsigned char *buffer, unsigned int
 		}
 
 		double j = (double)FractalEscape(z0r, z0i, cr, ci, params.iterations) / params.iterations;
-		buffer[k * 3 + 0] = (unsigned char)(pow(j, 0.6) * 255 + 0.5);
-		buffer[k * 3 + 1] = (unsigned char)(pow(j, 0.3) * 255 + 0.5);
-		buffer[k * 3 + 2] = (unsigned char)(pow(j, 0.1) * 255 + 0.5);
+		image->data[k * 3 + 0] = (unsigned char)(pow(j, 0.6) * 255 + 0.5);
+		image->data[k * 3 + 1] = (unsigned char)(pow(j, 0.3) * 255 + 0.5);
+		image->data[k * 3 + 2] = (unsigned char)(pow(j, 0.1) * 255 + 0.5);
 	}
 }

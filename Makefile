@@ -11,11 +11,11 @@ CC=clang
 CC_FLAGS = -Wall -O3
 
 
-all: $(OBJ_FILES) libraries/Imaging/libImaging.a
-	$(CC) $(CC_FLAGS) libraries/Imaging/libImaging.a $^ -o $(TARGET)
+all: $(OBJ_FILES) libraries/image/libImage.a
+	$(CC) $(CC_FLAGS) libraries/image/libImage.a $^ -o $(TARGET)
 
-libraries/Imaging/libImaging.a:
-	cd libraries/Imaging && $(MAKE) libImaging.a
+libraries/image/libImage.a:
+	cd libraries/image && $(MAKE) libImage.a
 	cd ../..
 
 $(OBJ_DIR)/%.o: sources/%.c
@@ -35,7 +35,7 @@ $(OBJ_DIR):
 
 .PHONY: clean
 clean:
-	cd libraries/Imaging && $(MAKE) clean
+	cd libraries/image && $(MAKE) clean
 	rm -rf $(OBJ_DIR)
 	rm $(TARGET)
 

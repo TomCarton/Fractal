@@ -29,7 +29,7 @@ typedef struct
 } FractalParameters;
 
 
-void RenderFractal(FractalParameters params, unsigned char *buffer, unsigned int width, unsigned int height);
+void RenderFractal(FractalParameters params, Image *image);
 
 
 #endif // __RenderFractal_h__
