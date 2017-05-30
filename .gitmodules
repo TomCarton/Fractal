@@ -1,3 +1,0 @@
-[submodule "libraries/Imaging"]
-	path = libraries/Imaging
-	url = git@github.com:TomCarton/libImaging.git
