@@ -25,17 +25,7 @@ int main(int argc, char *argv[])
     FractalParameters params;
     params.iterations = 500;
 
-    // Mandelbrot set
-    params.mode = FractalModeMandelbrot;
-    params.xMin = -2.2; params.xMax = 1.03;
-    params.yMin = -1.33; params.yMax = 1.33;
-
-    RenderFractal(params, &image);
-    reducedImage = ImageDownsize(image.data, image.width, image.height);
-    ImageSavePNG("result/mandelbrot.png", reducedImage, kWidth, kHeight);
-    free(reducedImage);
-
-    // Julia set
+    // - Julia set
     params.mode = FractalModeJulia;
     params.xMin = -1.54; params.xMax = 1.54;
     params.yMin = -1.17; params.yMax = 1.17;
@@ -53,6 +43,35 @@ int main(int argc, char *argv[])
     reducedImage = ImageDownsize(image.data, image.width, image.height);
     ImageSavePNG("result/julia2.png", reducedImage, kWidth, kHeight);
     free(reducedImage);
+
+
+    // - Mandelbrot set
+    params.mode = FractalModeMandelbrot;
+    params.xMin = -2.2; params.xMax = 1.03;
+    params.yMin = -1.33; params.yMax = 1.33;
+
+    RenderFractal(params, &image);
+    reducedImage = ImageDownsize(image.data, image.width, image.height);
+    ImageSavePNG("result/mandelbrot.png", reducedImage, kWidth, kHeight);
+    free(reducedImage);
+
+    params.xMin = -0.5743547773654014; params.xMax = -0.5740518416812923;
+    params.yMin = 0.48353907261597917; params.yMax = 0.4838420083000883;
+
+    RenderFractal(params, &image);
+    reducedImage = ImageDownsize(image.data, image.width, image.height);
+    ImageSavePNG("result/mandelbrot2.png", reducedImage, kWidth, kHeight);
+    free(reducedImage);
+
+    params.xMin = -0.750002334223; params.xMax = -0.7496233289947509;
+    params.yMin = 0.023677790164947487; params.yMax = 0.02397880640029905;
+    params.iterations = 2500;
+
+    RenderFractal(params, &image);
+    reducedImage = ImageDownsize(image.data, image.width, image.height);
+    ImageSavePNG("result/mandelbrot3.png", reducedImage, kWidth, kHeight);
+    free(reducedImage);
+
 
     free(image.data);
 

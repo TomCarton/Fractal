@@ -52,7 +52,9 @@ void RenderFractal(FractalParameters params, Image *image)
 				break;
 		}
 
-		double j = (double)FractalEscape(z0r, z0i, cr, ci, params.iterations) / params.iterations;
+        unsigned int age = FractalEscape(z0r, z0i, cr, ci, params.iterations);
+
+        double j = (double)age / params.iterations;
 		image->data[k * 3 + 0] = (unsigned char)(pow(j, 0.6) * 255 + 0.5);
 		image->data[k * 3 + 1] = (unsigned char)(pow(j, 0.3) * 255 + 0.5);
 		image->data[k * 3 + 2] = (unsigned char)(pow(j, 0.1) * 255 + 0.5);
